@@ -1,5 +1,5 @@
 #!/bin/sh
 
-pat=$1
+pat=$@
 find . -name '*.xml' -exec grep -nri ${pat} '{}' +
 
