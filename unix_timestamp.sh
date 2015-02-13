@@ -1,4 +1,4 @@
-#!/Users/jim/Local/php/bin/php -q
+#!/usr/bin/env php -q
 <?php
 
 $date = $argv[1];
