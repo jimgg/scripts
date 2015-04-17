@@ -3,15 +3,10 @@
 t=$1
 echo "Password:"
 read -s password
-s=`echo $password |shasum |gawk '{print $1}'`
-if [ "$t"x = "ax" ];then
-    if [ "$s"x = "5fd1d5cc7c29fd3de5b836b07cb3ab3f1a660aa0x" ];then
-        echo "ok"
-    else
-        echo "fail"
-    fi
-elif [ "$t"x = "bx" ];then
-    if [ "$s"x = "0457d0d9dd29c50f57d3476508b1e67cf3b1aed9x" ];then
+if [ "$t"x = "1pasx" ];then
+    saltpass="salt"$password
+    s=`echo $saltpass |shasum -a 256 |gawk '{print $1}'`
+    if [ "$s"x = "4a638d63ed8187387f5296213cd499bdbbefff18ff7c47ef92dc1e04e9165658x" ];then
         echo "ok"
     else
         echo "fail"
