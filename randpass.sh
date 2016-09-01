@@ -1,37 +1,17 @@
-#!/usr/bin/env php -q
-<?php
+#!/usr/bin/env python
 
-$t = 0;
-if ($argc > 1)
-{
-    $t = $argv[1];
-}
-suggestPassword($t);
+import sys
+import random
 
-# ABCDEFGHJKLMNPQRSTUVWYXZ/abcdefghjklmnpqrstuvwxyz/
 
-function suggestPassword($t) {
-    // restrict the password to just letters and numbers to avoid problems:
-    // "editors and viewers regard the password as multiple words and
-    // things like double click no longer work"
-    if (0 == $t)
-    {
-        $pwchars = "abcdefhjmnpqrstuvwxyz23456789!@#$%^&(){}[]<>+-*/=,.;?ABCDEFGHJKLMNPQRSTUVWYXZ";
-    }
-    else if (2 == $t)
-    {
-        //$pwchars = "abcdefhjmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWYXZ";
-        $pwchars = "abcdefhjmnpqrstuvwxyz23456789";
-    }
-    else
-    {
-        $pwchars = "abcdefhjmnpqrstuvwxyz23456789ABCDEFGHJKLMNPQRSTUVWYXZ";
-    }
-    $passwordlength = 16;    // do we want that to be dynamic?  no, keep it simple :)
-    $passwd = '';
+def get_random_string(length, allowed_chars):
+    return ''.join(random.SystemRandom().choice(allowed_chars) for i in range(length))
 
-    for ( $i = 0; $i < $passwordlength; $i++ ) {
-        $passwd .= substr($pwchars, rand(0, strlen($pwchars) - 1), 1);
-    }
-    echo "$passwd\n";
-}
+
+if __name__ == '__main__':
+    if len(sys.argv) > 1:
+        chars = 'abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    else:
+        chars = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    r_str = get_random_string(16, chars)
+    sys.stdout.write(r_str)
